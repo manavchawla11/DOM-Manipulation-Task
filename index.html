@@ -12,11 +12,11 @@
       <div>
         <input
           type="checkbox"
-          name="clock"
-          id="clock-input"
-          onchange="showApplication('clock')"
+          name="counter"
+          id="counter-input"
+          onchange="showApplication('counter')"
         />
-        <label for="clock-radio">Clock</label>
+        <label for="counter-check">Counter</label>
       </div>
       <div>
         <input
@@ -25,13 +25,14 @@
           id="timer-input"
           onchange="showApplication('timer')"
         />
-        <label for="timer-radio">Timer</label>
+        <label for="timer-check">Timer</label>
       </div>
       <div id="output">
-        <div id="clock" class="hide">MAKE CLOCK HERE</div>
+        <div id="counter" class="hide">MAKE COUNTER HERE</div>
         <div id="timer" class="hide">MAKE TIMER HERE</div>
       </div>
     </div>
     <script src="./src/app.js"></script>
+    <script src="./src/counter/counter.js"></script>
   </body>
 </html>
