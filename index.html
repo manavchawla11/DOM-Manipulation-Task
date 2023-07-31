@@ -13,7 +13,7 @@
         <input
           type="checkbox"
           name="counter"
-          id="counter-input"
+          id="counter-check"
           onchange="showApplication('counter')"
         />
         <label for="counter-check">Counter</label>
@@ -22,13 +22,18 @@
         <input
           type="checkbox"
           name="timer"
-          id="timer-input"
+          id="timer-check"
           onchange="showApplication('timer')"
         />
         <label for="timer-check">Timer</label>
       </div>
       <div id="output">
-        <div id="counter" class="hide">MAKE COUNTER HERE</div>
+        <div id="counter" class="hide">
+          MAKE COUNTER HERE
+          <div id="count">0</div>
+          <button onclick="incrementCount()">+1</button>
+          <button onclick="resetCount()">Reset</button>
+        </div>
         <div id="timer" class="hide">MAKE TIMER HERE</div>
       </div>
     </div>
