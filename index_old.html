@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <h1>DOM Manipulation: Counter and Timer</h1>
+      <hr />
+      Choose the application you want to see:
+      <div>
+        <input
+          type="checkbox"
+          name="counter"
+          id="counter-check"
+          onchange="showApplication('counter')"
+        />
+        <label for="counter-check">Counter</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="timer"
+          id="timer-check"
+          onchange="showApplication('timer')"
+        />
+        <label for="timer-check">Timer</label>
+      </div>
+      <div id="output">
+        <!-- COUNTER -->
+        <div id="counter" class="hide container">
+          <h2>Counter</h2>
+          <div id="count">0</div>
+          <button onclick="incrementCount()">+1</button>
+          <button onclick="decrementCount()">-1</button>
+          <button onclick="resetCount()">Reset</button>
+        </div>
+
+        <!-- TIMER -->
+        <div id="timer" class="hide container">
+          <h2>Timer</h2>
+          <form id="timer-form">
+            <div>
+              <label for="hours">Hours</label>
+              <input type="number" value="0" name="hours" id="hours" />
+            </div>
+            <div>
+              <label for="mins">Minutes</label>
+              <input type="number" value="0" name="mins" id="mins" />
+            </div>
+            <div>
+              <label for="secs">Seconds</label>
+              <input type="number" value="0" name="secs" id="secs" />
+            </div>
+            <button type="submit">Submit</button>
+            <button type="reset" onclick="stopTimer()">Stop</button>
+          </form>
+          <div id="timer-output">00:00:00</div>
+        </div>
+      </div>
+    </div>
+    <script src="./src/app.js"></script>
+    <script src="./src/counter/counter.js"></script>
+    <script src="./src/timer/timer.js"></script>
+  </body>
+</html>
