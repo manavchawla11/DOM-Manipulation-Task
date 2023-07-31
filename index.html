@@ -28,16 +28,37 @@
         <label for="timer-check">Timer</label>
       </div>
       <div id="output">
+        <!-- COUNTER -->
         <div id="counter" class="hide">
-          MAKE COUNTER HERE
           <div id="count">0</div>
           <button onclick="incrementCount()">+1</button>
           <button onclick="resetCount()">Reset</button>
         </div>
-        <div id="timer" class="hide">MAKE TIMER HERE</div>
+
+        <!-- TIMER -->
+        <div id="timer" class="hide">
+          <form id="timer-form">
+            <div>
+              <label for="hours">Hours</label>
+              <input type="number" value="0" name="hours" id="hours" />
+            </div>
+            <div>
+              <label for="mins">Minutes</label>
+              <input type="number" value="0" name="mins" id="mins" />
+            </div>
+            <div>
+              <label for="secs">Seconds</label>
+              <input type="number" value="0" name="secs" id="secs" />
+            </div>
+            <button type="submit">Submit</button>
+            <button type="reset" onclick="stopTimer()">Stop</button>
+          </form>
+          <div id="timer-output">00:00:00</div>
+        </div>
       </div>
     </div>
     <script src="./src/app.js"></script>
     <script src="./src/counter/counter.js"></script>
+    <script src="./src/timer/timer.js"></script>
   </body>
 </html>
