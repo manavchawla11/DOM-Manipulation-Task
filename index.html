@@ -9,6 +9,9 @@
   </head>
   <body>
     <div id="root">
+      <h1>DOM Manipulation: Counter and Timer</h1>
+      <hr />
+      Choose the application you want to see:
       <div>
         <input
           type="checkbox"
@@ -29,14 +32,16 @@
       </div>
       <div id="output">
         <!-- COUNTER -->
-        <div id="counter" class="hide">
+        <div id="counter" class="hide container">
+          <h2>Counter</h2>
           <div id="count">0</div>
           <button onclick="incrementCount()">+1</button>
           <button onclick="resetCount()">Reset</button>
         </div>
 
         <!-- TIMER -->
-        <div id="timer" class="hide">
+        <div id="timer" class="hide container">
+          <h2>Timer</h2>
           <form id="timer-form">
             <div>
               <label for="hours">Hours</label>
