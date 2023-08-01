@@ -44,7 +44,10 @@ class Timer {
 
   updateDOM() {
     let timerText = document.getElementById(`timerText-${this.uid}`);
-    timerText.innerText = `${this.hours}:${this.mins}:${this.secs}`;
+    let h = (this.hours < 10 ? "0" : "") + this.hours;
+    let m = (this.mins < 10 ? "0" : "") + this.mins;
+    let s = (this.secs < 10 ? "0" : "") + this.secs;
+    timerText.innerText = `${h}:${m}:${s}`;
   }
 
   // <div id="timer">
@@ -65,7 +68,7 @@ class Timer {
     // populating the elements
     timerDiv.id = `timerDiv-${this.uid}`;
     timerText.id = `timerText-${this.uid}`;
-    timerText.innerText = "0:0:0";
+    timerText.innerText = "00:00:00";
     startButton.innerText = "Start";
     stopButton.innerText = "Stop";
     resetButton.innerText = "Reset";
