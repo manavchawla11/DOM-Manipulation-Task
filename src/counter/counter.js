@@ -31,7 +31,7 @@ class Counter {
   render() {
     // creating required elements
     let counterDiv = document.createElement("div");
-    let counterText = document.createElement("p");
+    let counterText = document.createElement("h2");
     let incButton = document.createElement("button");
     let decButton = document.createElement("button");
     let resetButton = document.createElement("button");
@@ -43,6 +43,11 @@ class Counter {
     incButton.innerText = "+";
     decButton.innerText = "-";
     resetButton.innerText = "Reset";
+
+    // button bootstrap classes
+    incButton.classList.add("btn", "btn-success", "mx-2");
+    decButton.classList.add("btn", "btn-warning", "mx-2");
+    resetButton.classList.add("btn", "btn-danger", "mx-2");
 
     // providing click functionailty
     incButton.onclick = this.increment.bind(this);
@@ -65,6 +70,15 @@ class Counter {
       return;
     }
     document.body.appendChild(this.render());
+  }
+
+  hide() {
+    const counterDiv = document.getElementById(`counter-${this.uid}`);
+    counterDiv.classList.add("hide");
+  }
+  show() {
+    const counterDiv = document.getElementById(`counter-${this.uid}`);
+    counterDiv.classList.remove("hide");
   }
 }
 

@@ -1,14 +1,24 @@
-// function showApplication (appName) {
-//     const appDiv = document.querySelector(`#${appName}`);
-//     appDiv.classList.toggle("hide");
-// }
-
 import Counter from "./counter/counter.js";
+import Timer from "./timer/timer.js";
 
-const root = document.getElementById("root");
+const outputDiv = document.getElementById("output");
 
 const counter = new Counter();
-counter.mount(root);
+counter.mount(outputDiv);
 
-const counter1 = new Counter();
-counter1.mount(root);
+const timer = new Timer();
+timer.mount(outputDiv);
+timer.hide();
+
+const counterRadio = document.getElementById("counter-radio");
+const timerRadio = document.getElementById("timer-radio");
+
+counterRadio.addEventListener("click", (e) => {
+  counter.show();
+  timer.hide();
+});
+
+timerRadio.addEventListener("click", (e) => {
+  counter.hide();
+  timer.show();
+});

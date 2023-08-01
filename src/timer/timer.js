@@ -1,47 +1,112 @@
-let hours = 0,
-  minutes = 0,
-  seconds = 0;
-let intervalId;
+import { generateUniqueId } from "../helpers.js";
 
-// Form for duration of timer.
-const form = document.getElementById("timer-form");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  hours = Number.parseInt(document.querySelector("#hours").value);
-  minutes = Number.parseInt(document.querySelector("#mins").value);
-  seconds = Number.parseInt(document.querySelector("#secs").value);
-  // const secsLeft = hours * 3600 + minutes * 60 + s;
-  intervalId = setInterval(showRemainingTime, 1000);
-});
-
-function showRemainingTime() {
-  let h = (hours < 10 ? "0" : "") + hours;
-  let m = (minutes < 10 ? "0" : "") + minutes;
-  let s = (seconds < 10 ? "0" : "") + seconds;
-  const timerOutput = document.querySelector("#timer-output");
-  timerOutput.textContent = `${h}H : ${m}M : ${s}S`;
-  console.log(`${h}:${m}:${s}`);
-  if (seconds == 0 && hours == 0 && minutes == 0) {
-    clearInterval(intervalId);
-    timerOutput.textContent = "TIME IS UP!";
+class Timer {
+  constructor() {
+    this.hours = 0;
+    this.mins = 0;
+    this.secs = 0;
+    this.isMounted = false;
+    this.uid = generateUniqueId();
+    this.intervalId = "";
   }
-  if (seconds > 0) {
-    seconds--;
-  } else {
-    seconds = 59;
-    if (minutes > 0) {
-      minutes--;
-    } else {
-      minutes = 59;
-      if (hours > 0) {
-        hours--;
+
+  startTimer() {
+    this.intervalId = setInterval(this.updateTime.bind(this), 1000);
+  }
+
+  stopTimer() {
+    clearInterval(this.intervalId);
+  }
+
+  updateTime() {
+    console.log(`${this.hours}:${this.mins}:${this.secs}`);
+
+    if (this.secs == 59) {
+      this.mins++;
+      this.secs = 0;
+      if (this.mins == 59) {
+        this.hours++;
+        this.mins = 0;
       }
+    } else {
+      this.secs++;
     }
+
+    this.updateDOM();
+  }
+
+  resetTimer() {
+    this.hours = 0;
+    this.mins = 0;
+    this.secs = 0;
+    this.updateDOM();
+  }
+
+  updateDOM() {
+    let timerText = document.getElementById(`timerText-${this.uid}`);
+    timerText.innerText = `${this.hours}:${this.mins}:${this.secs}`;
+  }
+
+  // <div id="timer">
+  //   <p>12:22:25</p>
+  //   <button>Start</button>
+  //   <button>Stop</button>
+  //   <button>Reset</button>
+  // </div>
+
+  render() {
+    // creating required elements
+    let timerDiv = document.createElement("div");
+    let timerText = document.createElement("h2");
+    let startButton = document.createElement("button");
+    let stopButton = document.createElement("button");
+    let resetButton = document.createElement("button");
+
+    // populating the elements
+    timerDiv.id = `timerDiv-${this.uid}`;
+    timerText.id = `timerText-${this.uid}`;
+    timerText.innerText = "0:0:0";
+    startButton.innerText = "Start";
+    stopButton.innerText = "Stop";
+    resetButton.innerText = "Reset";
+
+    // button bootstrap classes
+    startButton.classList.add("btn", "btn-success", "mx-2");
+    stopButton.classList.add("btn", "btn-warning", "mx-2");
+    resetButton.classList.add("btn", "btn-danger", "mx-2");
+
+    // providing click functionailty
+    startButton.onclick = this.startTimer.bind(this);
+    stopButton.onclick = this.stopTimer.bind(this);
+    resetButton.onclick = this.resetTimer.bind(this);
+
+    timerDiv.appendChild(timerText);
+    timerDiv.appendChild(startButton);
+    timerDiv.appendChild(stopButton);
+    timerDiv.appendChild(resetButton);
+
+    return timerDiv;
+  }
+
+  mount(el) {
+    if (this.isMounted) return;
+    if (el) {
+      el.appendChild(this.render());
+      this.isMounted = true;
+      return;
+    }
+    document.body.appendChild(this.render());
+  }
+
+  hide() {
+    const timerDiv = document.getElementById(`timerDiv-${this.uid}`);
+    timerDiv.classList.add("hide");
+  }
+
+  show() {
+    const timerDiv = document.getElementById(`timerDiv-${this.uid}`);
+    timerDiv.classList.remove("hide");
   }
 }
 
-function stopTimer() {
-  clearInterval(intervalId);
-  const timerOutput = document.querySelector("#timer-output");
-  timerOutput.textContent = "00:00:00";
-}
+export default Timer;

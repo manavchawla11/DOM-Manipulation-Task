@@ -1,13 +1,18 @@
 .hide {
-    display: none;
+  display: none;
 }
 
 .container {
-    border: 2px solid black;
-    border-radius: 25px;
-    padding: 1em;
-    margin: 2em 1em;
-    text-align: center;
-    justify-content: center;
-    line-height: 1.5em;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 1em;
+  margin: 2em 1em;
+  /* text-align: center; */
+  justify-content: center;
+  line-height: 1.5em;
+  width: 50%;
+}
+
+.container h1 {
+  text-align: center;
 }
